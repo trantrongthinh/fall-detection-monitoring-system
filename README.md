@@ -2,15 +2,6 @@
 
 Hệ thống phát hiện té ngã thời gian thực từ camera/video. Project dùng `YOLOv11-Pose` để trích xuất keypoints cơ thể, chuyển mỗi frame thành vector đặc trưng 52 chiều, gom thành chuỗi frame và dùng mô hình `LSTM` để phân loại `fall` / `normal`. Bản demo realtime có theo dõi nhiều người, lưu sự kiện vào SQLite, chụp ảnh bằng chứng, gửi cảnh báo Telegram và xem lại qua dashboard Streamlit.
 
-## Điểm nổi bật cho CV
-
-- Xây dựng pipeline computer vision end-to-end: camera/video -> pose estimation -> feature extraction -> sequence model -> alert/dashboard.
-- Dùng `YOLOv11-Pose` để lấy 17 keypoints người và bbox, sau đó tạo vector đặc trưng 52 chiều.
-- Huấn luyện và so sánh mô hình LSTM với nhiều độ dài chuỗi (`30`, `35`, `40` frames).
-- Hỗ trợ realtime inference, tracking nhiều người, smoothing quyết định và cảnh báo Telegram.
-- Lưu lịch sử phát hiện vào SQLite, có dashboard Streamlit để xem event, snapshot và metric model.
-- Có script record demo video phục vụ báo cáo, GitHub và portfolio.
-
 ## Kiến trúc hệ thống
 
 ```text
@@ -273,44 +264,3 @@ models_4_clean/seq30/lstm_best_seq30.h5
 ```
 
 Với bài toán té ngã, recall thường quan trọng hơn precision vì bỏ sót té ngã nguy hiểm hơn báo nhầm. Khi trình bày CV, nên ghi rõ chiến lược threshold/smoothing được tối ưu theo mục tiêu an toàn.
-
-## Lưu ý trước khi đưa lên GitHub
-
-Checklist chi tiết nằm trong:
-
-```text
-GITHUB_CHECKLIST.md
-```
-
-Nên commit:
-
-- Source code `.py`
-- `README.md`
-- `requirements.txt`
-- `.env.example`
-- `telegram_config.example.json`
-- `models_lstm/lstm_runtime_config.example.json`
-- Bảng kết quả nhỏ như `.csv`, `.json`
-- Một vài ảnh minh họa hoặc link video demo
-
-Không nên commit:
-
-- Dataset video lớn
-- Cache `.npy`
-- `.venv`
-- `__pycache__`
-- `fall_events.db`
-- `captures/`
-- `recordings/`
-- `telegram_config.json`
-- Model lớn `.h5`, `.keras`, `.pt` nếu không dùng Git LFS
-
-## Gợi ý mô tả CV
-
-```text
-Real-time Fall Detection Monitoring System
-- Built an end-to-end computer vision system for fall detection using YOLOv11-Pose and LSTM sequence classification on 52-dimensional pose features.
-- Implemented realtime multi-person tracking, decision smoothing, SQLite event logging, Telegram alerts, and a Streamlit monitoring dashboard.
-- Trained and evaluated models on URFD, Lei2Fall, GMDCSA24, and MCFD datasets; benchmarked sequence lengths and threshold strategies for safety-oriented detection.
-- Developed demo recording, event snapshots, configurable runtime settings, and dashboard analytics for practical product presentation.
-```
