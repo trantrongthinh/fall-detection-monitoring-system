@@ -1,0 +1,46 @@
+.venv/
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Local IDE/editor files
+.idea/
+.vscode/
+.codex_review/
+.codex/
+.agents/
+anaconda_projects/
+
+# Secrets and local runtime config
+.env
+telegram_config.json
+
+# Local runtime outputs
+fall_events.db
+captures/
+recordings/
+analysis_outputs/
+logs/
+
+# Datasets and extracted caches
+datasets/
+datasets Lei2Fall/
+datasets MCFD/
+datasets URFD/
+ekramalam-GMDCSA24-A-Dataset-for-Human-Fall-Detection-in-Videos-*/
+frame_feature_cache*/
+extracted*/
+*.npy
+
+# Large model artifacts. Use Git LFS or release assets if you publish them.
+*.h5
+*.keras
+*.pt
+
+# Notebooks and generated presentation artifacts
+*.ipynb_checkpoints/
+*.ipynb
+*.pptx
+
+# Legacy duplicate model-result folder kept locally during experiments.
+/seq40/
